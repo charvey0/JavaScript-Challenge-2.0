@@ -179,7 +179,8 @@ $( document ).ready( function() {
 
     // place eventListener on the nav link #1 Begin button 
     $("#nav-link-1").on("click", function(){
-        $("#display1").show();    
+        $(".nav-link").removeClass("active");
+        $("#display1").show().addClass("active");    
         $("#display2").hide();    
         $("#display3").hide();    
     });
@@ -187,16 +188,18 @@ $( document ).ready( function() {
 
     // place eventListener on the nav link #2 Begin button 
     $("#nav-link-2").on("click", function(){
+        $(".nav-link").removeClass("active");
         $("#display1").hide();    
-        $("#display2").show();    
+        $("#display2").show().addClass("active");    
         $("#display3").hide();    
     });
 
     // place eventListener on the nav link #3 Begin button 
     $("#nav-link-3").on("click", function(){
+        $(".nav-link").removeClass("active");
         $("#display1").hide();    
         $("#display2").hide();    
-        $("#display3").show();    
+        $("#display3").show().addClass("active");    
     });
 
     // place eventListener on the display #1 Begin button 
