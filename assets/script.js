@@ -105,13 +105,12 @@ function takeQuiz() {
 
     // make trigger to count down time
     var timer = setInterval(function() {
-        $("#time").text(time);
         time--; 
-        if (time<0) { 
+        $("#time").text(time);
+        if (time <= 0) { 
             clearInterval(timer);
 
-            //reset time
-            time = 60; 
+            $("#time").text(0);
             revealScore();
  
         }
@@ -170,8 +169,6 @@ function sortScores(scores){
 
 
 // DISPLAYS: final score and notifies user if they made it to the Hall of Fame
-// WAITING FOR: user to click the "Begin" button
-// NEXT: takeQuiz
 function revealScore() {
     // show the correct part and link up the nav-bar
     $(".nav-link").removeClass("active");
@@ -288,6 +285,7 @@ $( document ).ready( function() {
         $(".nav-link").removeClass("active");
         $("#display1").hide();    
         $("#display2").show();    
+        $("#nav-link-1").addClass("active");
         takeQuiz();
     });
 
@@ -327,7 +325,7 @@ $( document ).ready( function() {
 
      correct = askQuestion(questionNumber++);
 
-});
+    });
 
     
     // give the user the rules with a button to begin the quiz
