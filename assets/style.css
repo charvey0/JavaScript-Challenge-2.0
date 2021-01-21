@@ -5,7 +5,7 @@ body {
     background-color: gray;
 }
 
-h1, .row {
+.row {
     padding-top: 75px;
 }
 
@@ -33,9 +33,6 @@ main {
 /* 
         classes
 */
-.btn {
-    margin:10px;
-}
 
 .option {
     padding: 5px;
