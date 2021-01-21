@@ -17,6 +17,12 @@ var score = 0;
 // WAITING FOR: user to push the "Begin" button
 // NEXT: takeQuiz()
 function init() {
+    // show the correct part and link up the nav-bar
+    $(".nav-link").removeClass("active");
+    $("#display1").show();    
+    $("#display2").hide();    
+    $("#display3").hide();
+    $("#nav-link-1").addClass("active");    
 
 }
 
@@ -89,6 +95,13 @@ function askQuestion(i){
 // WAITING FOR: time to run out or user to answer all 50 questions
 // NEXT: revealScore()
 function takeQuiz() {
+    // show the correct part and link up the nav-bar
+    $(".nav-link").removeClass("active");
+    $("#display1").hide();    
+    $("#display2").show();    
+    $("#display3").show();
+    $("#nav-link-2").addClass("active");    
+    
     //reset time and score
     time = 60; 
     score = 0;
