@@ -3,7 +3,7 @@ var questionNumber = 0;
 var correct = askQuestion(questionNumber++);
 
 // set time and score
-var time = 60;
+var time = 0;
 var score = 0;
 
 
@@ -17,12 +17,6 @@ var score = 0;
 // WAITING FOR: user to push the "Begin" button
 // NEXT: takeQuiz()
 function init() {
-    $("#hall").hide();
-
-    display1.show();
-    display2.hide();
-    display3.hide();
-        
 
 }
 
