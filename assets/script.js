@@ -47,7 +47,8 @@ function checkResult(r, c){
     return result;            
 }
 
-console.log(checkResult(1, "1"));
+
+
 
 
 // INPUT: input is the question index
@@ -95,4 +96,28 @@ function getHallScores(){
 
     return hallScores;
 }
+
+
+
+// INPUT: an array of member names(index 0) and thier scores (index 1)
+// * sets the hallScore in localStorage to the new array
+// OUTPUT: array of scores in HoF (decending order)
+function sortScores(scores){
+    // sorts the array by index 1 from largest to smallest
+    for(var i=scores.length-1 ; i>=0 ; i-- ){
+      for(var j=(i-1) ; j>=0 ; j--){
+          if(scores[i][1] > scores[j][1]){
+            var temp = scores [i];
+            scores[i] = scores[j];
+            scores[j] = temp;
+          }
+      }
+    }  
+    // delete scores after 10th place
+    while (scores.length > 10) { scores.pop();  }
+
+    localStorage.setItem("hallScores", JSON.stringify(scores)); 
+    return scores;
+}
+
 
