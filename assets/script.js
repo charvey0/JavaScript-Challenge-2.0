@@ -1,3 +1,13 @@
+// set first question
+var questionNumber = 0;
+var correct = askQuestion(questionNumber++);
+
+// set time and score
+var time = 60;
+var score = 0;
+
+
+
 
 /*************************************************************
 *               DISPLAY #1 FUNCTIONS 
@@ -67,10 +77,10 @@ function checkResult(r, c){
 // OUTPUT: correct response
 function askQuestion(i){
 
-    // make a array of random numbers 1-length of array-1
+    // make a array of random numbers 1-4
     var randomArray = randomIntArray(4);    
     
-    // load prompt and options
+    // load question and options
     $("#question").text(questions[i][0]);
     $("#option1").text(questions[i][randomArray[0]]);
     $("#option2").text(questions[i][randomArray[1]]);
@@ -81,6 +91,27 @@ function askQuestion(i){
     return questions[i][1];
 }
 
+// DISPLAYS: the quiz elements 
+// WAITING FOR: time to run out or user to answer all 50 questions
+// NEXT: revealScore()
+function takeQuiz() {
+
+    // show time and score
+    $("#time").text(time);
+    $("#score").text(score);
+
+    // make trigger to count down time
+    var timer = setInterval(function() {
+        $("#time").text(time);
+        time--; 
+        if (time<0) { 
+            clearInterval(timer);
+
+console.log("revealScore(score) called.");
+// TODO:           revealScore(score);
+        }
+    }, 1000);
+}
 
 
 
@@ -172,6 +203,44 @@ $( document ).ready( function() {
     $("#begin").on("click", function(e){
         takeQuiz();
     });
+
+
+    // place eventListener on the nav link #3 Begin button 
+    $(".option").on("click", function (e) {
+        var userChoice = e.target.text;
+        if (checkResult(userChoice, correct)){
+          // increase score
+          score++;
+
+          // let user know they got is right
+          $("#result").text("Yes! You got it right!");
+          $( this ).css("color", "green");
+
+        } else { 
+          // time penelty  
+          time -= 5;
+
+          // let user know they were wrong
+          $( this ).removeClass("btn-success");
+          $( this ).addClass("btn-danger");
+          $("#result").text("Sorry, your answer is incorrect");
+        }
+
+        // set a timer to reset the chosen option back to original style
+        setTimeout(function() { 
+
+            // show time and score
+            $("#time").text(time);
+            $("#score").text(score);
+
+            // reset
+            $(".option").css("color", "white").removeClass("btn-danger").addClass("btn-success");
+            $("#result").text("");
+        }, 500);
+
+     correct = askQuestion(questionNumber++);
+
+});
 
     
     // give the user the rules with a button to begin the quiz
