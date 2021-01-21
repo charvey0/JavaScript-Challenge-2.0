@@ -77,6 +77,12 @@ function checkResult(r, c){
 // OUTPUT: correct response
 function askQuestion(i){
 
+    // loop index back to 0 if last question was already asked
+    if (questionNumber >= questions.length) { 
+        questionNumber = 0; 
+        i = 0; 
+    }
+
     // make a array of random numbers 1-4
     var randomArray = randomIntArray(4);    
     
@@ -110,16 +116,17 @@ function takeQuiz() {
     $("#time").text(time);
     $("#score").text(score);
 
+
     // make trigger to count down time
     var timer = setInterval(function() {
         time--; 
         $("#time").text(time);
         if (time <= 0) { 
             clearInterval(timer);
-
+            time = 0;
             $("#time").text(0);
             revealScore();
- 
+
         }
     }, 1000);
 }
@@ -177,21 +184,24 @@ function sortScores(scores){
 
 // DISPLAYS: final score and notifies user if they made it to the Hall of Fame
 function revealScore() {
+
+    // if user has not started a quiz and did not finish
+    if (time <= 0) {
+        // get userName from localStorge, if it's not there ask user for it
+        var userName = localStorage.getItem("userName");
+        if (userName === null) {
+            userName = prompt("Please enter your name.");
+        } else if (!confirm("Is this still "+userName+"?")) {
+            userName = prompt("Please enter your name.");
+        }
+    }
+
     // show the correct part and link up the nav-bar
     $(".nav-link").removeClass("active");
     $("#display1").hide();    
     $("#display2").hide();    
     $("#display3").show();
     $("#nav-link-3").addClass("active");    
-
-
-    // get userName from localStorge, if it's not there ask user for it
-    var userName = localStorage.getItem("userName");
-    if (userName === null) {
-        userName = prompt("Please enter your name.");
-    } else if (!confirm("Is this still "+userName+"?")) {
-        userName = prompt("Please enter your name.");
-    }
 
     // remember userName for next time
     localStorage.setItem("userName", userName);
@@ -263,6 +273,7 @@ $( document ).ready( function() {
         $("#display2").hide();    
         $("#display3").hide();
         $("#nav-link-1").addClass("active");
+        time = 0;
         init();    
     });
     
@@ -274,6 +285,7 @@ $( document ).ready( function() {
         $("#display2").show();    
         $("#display3").hide();   
         $("#nav-link-2").addClass("active");    
+        time = 0;
         takeQuiz(); 
     });
 
@@ -284,6 +296,7 @@ $( document ).ready( function() {
         $("#display2").hide();    
         $("#display3").show();    
         $("#nav-link-3").addClass("active");
+        time = 0;
         revealScore();    
     });
 
