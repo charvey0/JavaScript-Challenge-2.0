@@ -3,6 +3,18 @@
 *               DISPLAY #1 FUNCTIONS 
 *********************************************************** */
 
+// DISPLAYS: the rule for the quiz
+// WAITING FOR: user to push the "Begin" button
+// NEXT: takeQuiz()
+function init() {
+    $("#hall").hide();
+
+    display1.show();
+    display2.hide();
+    display3.hide();
+        
+
+}
 
 
 
@@ -121,3 +133,25 @@ function sortScores(scores){
 }
 
 
+
+
+
+
+
+
+/*
+
+    WHEN THE DOCUMANT IS READY, LET'S BEGIN
+
+*/
+$( document ).ready( function() {
+
+    $("#display1").show();    
+
+    // place eventListener on the display #1 Begin button 
+    $("#begin").on("click", function(e){
+        takeQuiz();
+    });
+    
+});
+  
