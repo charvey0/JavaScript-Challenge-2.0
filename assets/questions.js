@@ -82,19 +82,19 @@ const questions = [
         '<!--This is a comment-->',
         '#This is a comment'
     ],
-    ['What is the correct JavaScript syntax to insert a comment that has more than one line?',
-    `/*This comment has
 
+
+
+// this question is not loading correctly: on one line and gives a false incorrect     
+    ['What is the correct JavaScript syntax to insert a comment that has more than one line?',
+    `/*This comment has 
     more than one line*/`,
-    `<!--This comment has
-    
+    `<!--This comment has  
     more than one line-->`,
     `//This comment has
-    
     more than one line//`,
     `##This comment has
-    
-    ##more than one line`
+     ##more than one line`
     ],
     ['What is the correct way to write a JavaScript array?',
         'var txt = new Array("tim","kim","jim")',

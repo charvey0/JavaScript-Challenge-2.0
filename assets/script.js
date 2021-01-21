@@ -95,6 +95,9 @@ function askQuestion(i){
 // WAITING FOR: time to run out or user to answer all 50 questions
 // NEXT: revealScore()
 function takeQuiz() {
+    //reset time and score
+    time = 60; 
+    score = 0;
 
     // show time and score
     $("#time").text(time);
@@ -106,6 +109,10 @@ function takeQuiz() {
         time--; 
         if (time<0) { 
             clearInterval(timer);
+
+            //reset time and score
+            time = 60; 
+            score = 0;
 
 console.log("revealScore(score) called.");
 // TODO:           revealScore(score);
@@ -191,7 +198,8 @@ $( document ).ready( function() {
         $(".nav-link").removeClass("active");
         $("#display1").hide();    
         $("#display2").show().addClass("active");    
-        $("#display3").hide();    
+        $("#display3").hide();   
+        takeQuiz(); 
     });
 
     // place eventListener on the nav link #3 Begin button 
