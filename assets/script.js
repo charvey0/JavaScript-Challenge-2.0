@@ -203,7 +203,10 @@ $( document ).ready( function() {
     });
 
     // place eventListener on the display #1 Begin button 
-    $("#begin").on("click", function(e){
+    $("#begin").on("click", function(){
+        $(".nav-link").removeClass("active");
+        $("#display1").hide();    
+        $("#display2").show();    
         takeQuiz();
     });
 
