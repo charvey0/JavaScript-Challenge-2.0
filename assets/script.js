@@ -146,12 +146,36 @@ function sortScores(scores){
 */
 $( document ).ready( function() {
 
-    $("#display1").show();    
+    // place eventListener on the nav link #1 Begin button 
+    $("#nav-link-1").on("click", function(){
+        $("#display1").show();    
+        $("#display2").hide();    
+        $("#display3").hide();    
+    });
+    
+
+    // place eventListener on the nav link #2 Begin button 
+    $("#nav-link-2").on("click", function(){
+        $("#display1").hide();    
+        $("#display2").show();    
+        $("#display3").hide();    
+    });
+
+    // place eventListener on the nav link #3 Begin button 
+    $("#nav-link-3").on("click", function(){
+        $("#display1").hide();    
+        $("#display2").hide();    
+        $("#display3").show();    
+    });
 
     // place eventListener on the display #1 Begin button 
     $("#begin").on("click", function(e){
         takeQuiz();
     });
+
     
+    // give the user the rules with a button to begin the quiz
+    $("#display1").show();    
+
 });
   
