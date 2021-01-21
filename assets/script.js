@@ -110,12 +110,10 @@ function takeQuiz() {
         if (time<0) { 
             clearInterval(timer);
 
-            //reset time and score
+            //reset time
             time = 60; 
-            score = 0;
-
-console.log("revealScore(score) called.");
-// TODO:           revealScore(score);
+            revealScore();
+ 
         }
     }, 1000);
 }
@@ -171,25 +169,97 @@ function sortScores(scores){
 }
 
 
+// DISPLAYS: final score and notifies user if they made it to the Hall of Fame
+// WAITING FOR: user to click the "Begin" button
+// NEXT: takeQuiz
+function revealScore() {
+    // show the correct part and link up the nav-bar
+    $(".nav-link").removeClass("active");
+    $("#display1").hide();    
+    $("#display2").hide();    
+    $("#display3").show();
+    $("#nav-link-3").addClass("active");    
+
+
+    // get userName from localStorge, if it's not there ask user for it
+    var userName = localStorage.getItem("userName");
+    if (userName === null) {
+        userName = prompt("Please enter your name.");
+    } else if (!confirm("Is this still "+userName+"?")) {
+        userName = prompt("Please enter your name.");
+    }
+
+    // remember userName for next time
+    localStorage.setItem("userName", userName);
+
+    // get current members and scores
+    var hallScores = getHallScores();
+
+
+    // check to see if user got a nonzero score
+    if (score != 0) {
+        $("#left-3").html("<h1 style='margin: 70px'>Your final score is: "+score+" points!</h1>");
+ 
+        var currentScore = [userName, score];
+    
+        // add the new score
+        hallScores.push(currentScore);
+    
+    } else {
+        $("#left-3").html("<h1 style='margin: 70px'>Thank you for visiting the Hall of Fame!</h1>");
+    }
+  
+    // sort and limit to 10 members
+    hallScores = sortScores(hallScores); 
+
+    //reset score
+    score = 0;
+
+    // keeps track if the user is member or not
+    var isMember = false;
+
+    $("#right-3").html("<hr class='my-4'>");
+
+    if (hallScores.length > 0) {
+        // go through each score in the hall and lists it in the right column
+        for(var i=hallScores.length-1 ; i>=0 ; i--){
+            if(userName == hallScores[i][0]){
+                $("#right-3").prepend("<div class='btn btn-primary' style='width: 75%; margin: 10px;'>"+ordinalNumbers[i]+" place: "+hallScores[i][0]+" ("+hallScores[i][1]+" points)</div");
+                isMember = true;
+            } else {
+                $("#right-3").prepend("<div class='btn btn-outline-primary' style='width: 75%; margin: 10px;'>"+ordinalNumbers[i]+" place: "+hallScores[i][0]+" ("+hallScores[i][1]+" points)</div");
+            }
+       }
+    } else { $("#right-3").prepend("Not much to see here, why don't you try to be the first in the Hall of Fame!") }
+
+    $("#right-3").prepend("<hr class='my-4'>");
+
+    if (isMember) {
+        $("#left-3").append("Congratulations of being a member of the Hall of Fame.  All your scores are highlighted to the right.");
+    }
+}
 
 
 
 
 
 
-/*
+
+/***************************************************
 
     WHEN THE DOCUMANT IS READY, LET'S BEGIN
 
-*/
+****************************************************/
 $( document ).ready( function() {
 
     // place eventListener on the nav link #1 Begin button 
     $("#nav-link-1").on("click", function(){
         $(".nav-link").removeClass("active");
-        $("#display1").show().addClass("active");    
+        $("#display1").show();    
         $("#display2").hide();    
-        $("#display3").hide();    
+        $("#display3").hide();
+        $("#nav-link-1").addClass("active");
+        init();    
     });
     
 
@@ -197,8 +267,9 @@ $( document ).ready( function() {
     $("#nav-link-2").on("click", function(){
         $(".nav-link").removeClass("active");
         $("#display1").hide();    
-        $("#display2").show().addClass("active");    
+        $("#display2").show();    
         $("#display3").hide();   
+        $("#nav-link-2").addClass("active");    
         takeQuiz(); 
     });
 
@@ -207,7 +278,9 @@ $( document ).ready( function() {
         $(".nav-link").removeClass("active");
         $("#display1").hide();    
         $("#display2").hide();    
-        $("#display3").show().addClass("active");    
+        $("#display3").show();    
+        $("#nav-link-3").addClass("active");
+        revealScore();    
     });
 
     // place eventListener on the display #1 Begin button 
