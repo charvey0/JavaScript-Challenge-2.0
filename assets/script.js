@@ -336,7 +336,6 @@ $( document ).ready( function() {
 
     
     // give the user the rules with a button to begin the quiz
-    $("#display1").show();    
+    init();    
 
 });
-  
