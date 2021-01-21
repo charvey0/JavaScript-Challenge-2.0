@@ -1,3 +1,10 @@
+/* 
+        html elements
+*/
+body {
+    background-color: gray;
+}
+
 h1, .row {
     padding-top: 75px;
 }
@@ -7,6 +14,41 @@ ul {
     text-align: left;
 }
 
- {
 
+
+/* 
+        semantic html elements
+*/
+footer{
+    padding:15px;
+    margin-top: 10px;
+}
+main {
+    background-color: #dddddd;
+    padding: 50px;
+    margin-top: 90px;
+    margin-bottom: 90px;
+}
+
+
+/* 
+        classes
+*/
+.btn {
+    margin:10px;
+}
+
+.option {
+    padding: 5px;
+    margin: 5px;
+    width: 100%;
+}
+
+
+/* 
+        ids
+*/
+#display1, #display2, #display3 {
+    /* display: none; */
+    padding: 50px;
 }
