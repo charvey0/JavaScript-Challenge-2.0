@@ -207,7 +207,8 @@ $( document ).ready( function() {
 
     // place eventListener on the nav link #3 Begin button 
     $(".option").on("click", function (e) {
-        var userChoice = e.target.text;
+
+        var userChoice = e.target.innerText;
         if (checkResult(userChoice, correct)){
           // increase score
           score++;
@@ -221,8 +222,7 @@ $( document ).ready( function() {
           time -= 5;
 
           // let user know they were wrong
-          $( this ).removeClass("btn-success");
-          $( this ).addClass("btn-danger");
+          $( this ).removeClass("btn-success").addClass("btn-danger");
           $("#result").text("Sorry, your answer is incorrect");
         }
 
