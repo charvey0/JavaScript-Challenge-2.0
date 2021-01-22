@@ -37,29 +37,9 @@ I also struggled more that I thought I would with the empty files at the start o
  
 ## Functionality Demonstration
 
+Click [here](https://charvey0.github.io/JavaScript-Challenge-2.0) to go to the GitHub Page.
 
 
+Click [here](https://www.awesomescreenshot.com/video/2472738?key=a150f98edd6107840985cb1c1af88f8c) for a video demonstration of the application's functionality.
 
-
-
-
-
-
-
-
-
-
-
-
-![Code Generator in action](./Assets/Password-Generator.png)
-
-
-
-
-
-
-
-
-Click [here](https://www.awesomescreenshot.com/video/2326247?key=5cf40401be0223667ef5f7cdfaf7b2bd) for a video demonstration of the application's functionality.
-
-Click [here](https://charvey0.github.io/03-Homework/) to go to the GitHub Page.
+![JavaScript Challenge in action](https://drive.google.com/file/d/1kEsBXwWG48Xy5eLYLRyyy7njjIHf2eC7/view?usp=sharing)
