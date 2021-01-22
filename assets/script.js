@@ -105,7 +105,7 @@ function takeQuiz() {
     $(".nav-link").removeClass("active");
     $("#display1").hide();    
     $("#display2").show();    
-    $("#display3").show();
+    $("#display3").hide();
     $("#nav-link-2").addClass("active");    
     
     //reset time and score
