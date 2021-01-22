@@ -122,11 +122,10 @@ function takeQuiz() {
         time--; 
         $("#time").text(time);
         if (time <= 0) { 
-            clearInterval(timer);
             time = 0;
             $("#time").text(0);
+            clearInterval(timer);
             revealScore();
-
         }
     }, 1000);
 }
